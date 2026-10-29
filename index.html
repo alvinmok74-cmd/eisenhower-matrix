@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eisenhower Matrix</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f7; margin: 0; padding: 16px; }
+  h1 { text-align: center; }
+  .container { display: flex; gap: 20px; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; }
+  .left-panel { flex: 0 0 340px; background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  .right-panel { flex: 1; min-width: 500px; }
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quadrant { background: white; border-radius: 12px; padding: 14px; min-height: 180px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  .q1 { border-top: 5px solid #ff3b30; }
+  .q2 { border-top: 5px solid #ff9500; }
+  .q3 { border-top: 5px solid #007aff; }
+  .q4 { border-top: 5px solid #8e8e93; }
+  .task-item { background: #f9f9fb; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+  .matrix-task { background: #f5f5f7; padding: 8px 10px; border-radius: 6px; margin-bottom: 6px; }
+  .empty { color: #999; font-style: italic; }
+  @media (max-width: 900px) { .container { flex-direction: column; } .left-panel, .right-panel { min-width: auto; flex: none; width: 100%; } }
+</style>
+</head>
+<body>
+  <h1>Eisenhower Matrix</h1>
+  <p style="text-align:center;color:#666">資料由 Grok Bot 自動更新（tasks.json）</p>
+  <div class="container">
+    <div class="left-panel">
+      <h3>我嘅代辦清單</h3>
+      <div id="taskList"></div>
+    </div>
+    <div class="right-panel">
+      <div class="matrix">
+        <div class="quadrant q1"><h2>1. 重要 + 緊急<br><small>即刻做</small></h2><div id="q1"></div></div>
+        <div class="quadrant q2"><h2>2. 重要 + 唔緊急<br><small>排程做</small></h2><div id="q2"></div></div>
+        <div class="quadrant q3"><h2>3. 唔重要 + 緊急<br><small>盡快處理</small></h2><div id="q3"></div></div>
+        <div class="quadrant q4"><h2>4. 唔重要 + 唔緊急<br><small>可以刪除／暫時唔理</small></h2><div id="q4"></div></div>
+      </div>
+    </div>
+  </div>
+<script>
+async function loadTasks() {
+  try {
+    const res = await fetch('tasks.json?t=' + Date.now());
+    const tasks = await res.json();
+    render(tasks);
+  } catch (e) {
+    document.getElementById('taskList').innerHTML = '<div class="empty">載入失敗，請確認 tasks.json 存在</div>';
+  }
+}
+function render(tasks) {
+  const list = document.getElementById('taskList');
+  list.innerHTML = '';
+  if (!tasks || tasks.length === 0) {
+    list.innerHTML = '<div class="empty">暫時冇代辦</div>';
+  } else {
+    tasks.forEach(t => {
+      const div = document.createElement('div');
+      div.className = 'task-item';
+      div.innerHTML = `<div><strong>${t.text}</strong></div><div style="font-size:13px;color:#666">重要: ${t.important ? '是' : '否'} | 緊急: ${t.urgent ? '是' : '否'}</div>`;
+      list.appendChild(div);
+    });
+  }
+  ['q1','q2','q3','q4'].forEach(id => document.getElementById(id).innerHTML = '');
+  const quadrants = { q1: [], q2: [], q3: [], q4: [] };
+  tasks.forEach(t => {
+    const key = t.important && t.urgent ? 'q1' : t.important && !t.urgent ? 'q2' : !t.important && t.urgent ? 'q3' : 'q4';
+    quadrants[key].push(t);
+  });
+  Object.keys(quadrants).forEach(key => {
+    const container = document.getElementById(key);
+    if (quadrants[key].length === 0) {
+      container.innerHTML = '<div class="empty">暫時冇項目</div>';
+    } else {
+      quadrants[key].forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'matrix-task';
+        div.textContent = t.text;
+        container.appendChild(div);
+      });
+    }
+  });
+}
+loadTasks();
+</script>
+</body>
+</html>
