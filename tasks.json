@@ -1,6 +1,18 @@
 [
-  {"text": "SSHD1018 Presentation Outline", "important": true, "urgent": true},
-  {"text": "LC1032 Research Essay Step 1 + 2", "important": true, "urgent": false},
-  {"text": "GE Academic Integrity Post-test", "important": false, "urgent": true},
-  {"text": "Programme Admission Briefing", "important": false, "urgent": false}
+  {"text": "SSHD1018 Presentation Outline（聽日 11:30；同傑對齊＋upload Word／hard copy）", "important": true, "urgent": true},
+  {"text": "SSHD1035 Presentation Outline（10/22 已過；確認有冇欠交／點補）", "important": true, "urgent": true},
+  {"text": "聽日堂：LC1032 tutorial 08:30（WK-S101）＋ SSHD1018 tutorial 12:30–14:30（WK-S1013）", "important": true, "urgent": true},
+  {"text": "LC1032 Research Essay Step 1 + 2（11/6 17:00）", "important": true, "urgent": false},
+  {"text": "SEHS1028 Week 9 Online Assignment Ch4（11/8 23:00）", "important": true, "urgent": false},
+  {"text": "LC1032 Self-directed Learning Portfolio Part I AI-SELA（11/20 17:00）", "important": true, "urgent": false},
+  {"text": "Academic English Enhancement Workshops S1–S4 quizzes（11/22 23:59）", "important": true, "urgent": false},
+  {"text": "SEHS1028 Week 11 Online Assignment Ch5（11/22 23:00）", "important": true, "urgent": false},
+  {"text": "LC1032 Group Presentation PPT（12/4 17:00；同組員排期）", "important": true, "urgent": false},
+  {"text": "SEHS1028 Week 13 Online Assignment Ch6（12/6 23:00）", "important": true, "urgent": false},
+  {"text": "GE National Education MCQ（12/13 23:59）", "important": true, "urgent": false},
+  {"text": "GE Academic Integrity Post-test + Honour Declaration（11/1 23:59）", "important": false, "urgent": true},
+  {"text": "決定 SSHD1018 make-up（11/1 09:00 N1104；淨係缺考兼有證明先關事）", "important": false, "urgent": true},
+  {"text": "Library IELTS Workshop I 報名（3/11 Teams；想去先登記）", "important": false, "urgent": true},
+  {"text": "Programme Admission Briefing（11/11 19:00 online；唔諗嗰個 BA 就唔理）", "important": false, "urgent": false},
+  {"text": "Mastering AI for Smart Learning Workshop I（12/11 或 13/11 16:30 Teams）", "important": false, "urgent": false}
 ]
